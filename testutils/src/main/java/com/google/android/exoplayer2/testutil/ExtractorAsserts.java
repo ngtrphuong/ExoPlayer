@@ -288,7 +288,7 @@ public final class ExtractorAsserts {
     } else {
       String[] path = file.split("/");
       checkState(
-          path.length > 0 && path[0].equals("media"),
+          path.length > 0 && "media".equals(path[0]),
           "AssertionConfig.dumpFilesPrefix == null but file isn't in a media/ sub-directory.\n"
               + "Expected : 'media/<path-to-file>'\n"
               + "Found    : '"

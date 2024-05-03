@@ -521,9 +521,9 @@ public final class MediaCodecUtil {
   private static void applyWorkarounds(String mimeType, List<MediaCodecInfo> decoderInfos) {
     if (MimeTypes.AUDIO_RAW.equals(mimeType)) {
       if (Util.SDK_INT < 26
-          && Util.DEVICE.equals("R9")
+          && "R9".equals(Util.DEVICE)
           && decoderInfos.size() == 1
-          && decoderInfos.get(0).name.equals("OMX.MTK.AUDIO.DECODER.RAW")) {
+          && "OMX.MTK.AUDIO.DECODER.RAW".equals(decoderInfos.get(0).name)) {
         // This device does not list a generic raw audio decoder, yet it can be instantiated by
         // name. See <a href="https://github.com/google/ExoPlayer/issues/5782">Issue #5782</a>.
         decoderInfos.add(
@@ -547,7 +547,7 @@ public final class MediaCodecUtil {
               // Prefer generic decoders over ones provided by the device.
               return 1;
             }
-            if (Util.SDK_INT < 26 && name.equals("OMX.MTK.AUDIO.DECODER.RAW")) {
+            if (Util.SDK_INT < 26 && "OMX.MTK.AUDIO.DECODER.RAW".equals(name)) {
               // This decoder may modify the audio, so any other compatible decoders take
               // precedence. See [Internal: b/62337687].
               return -1;
@@ -621,7 +621,7 @@ public final class MediaCodecUtil {
     return codecName.startsWith("omx.google.")
         || codecName.startsWith("omx.ffmpeg.")
         || (codecName.startsWith("omx.sec.") && codecName.contains(".sw."))
-        || codecName.equals("omx.qcom.video.decoder.hevcswvdec")
+        || "omx.qcom.video.decoder.hevcswvdec".equals(codecName)
         || codecName.startsWith("c2.android.")
         || codecName.startsWith("c2.google.")
         || (!codecName.startsWith("omx.") && !codecName.startsWith("c2."));

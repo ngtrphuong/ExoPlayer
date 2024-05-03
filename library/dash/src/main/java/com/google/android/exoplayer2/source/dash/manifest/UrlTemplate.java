@@ -132,7 +132,7 @@ public final class UrlTemplate {
       } else {
         int secondIndex = template.indexOf("$", templateIndex + 1);
         String identifier = template.substring(templateIndex + 1, secondIndex);
-        if (identifier.equals(REPRESENTATION)) {
+        if (REPRESENTATION.equals(identifier)) {
           identifiers[identifierCount] = REPRESENTATION_ID;
         } else {
           int formatTagIndex = identifier.indexOf("%0");

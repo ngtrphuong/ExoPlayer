@@ -216,9 +216,9 @@ public final class HlsPlaylistParser implements ParsingLoadable.Parser<HlsPlayli
             || line.startsWith(TAG_MEDIA_DURATION)
             || line.startsWith(TAG_KEY)
             || line.startsWith(TAG_BYTERANGE)
-            || line.equals(TAG_DISCONTINUITY)
-            || line.equals(TAG_DISCONTINUITY_SEQUENCE)
-            || line.equals(TAG_ENDLIST)) {
+            || TAG_DISCONTINUITY.equals(line)
+            || TAG_DISCONTINUITY_SEQUENCE.equals(line)
+            || TAG_ENDLIST.equals(line)) {
           extraLines.add(line);
           return parseMediaPlaylist(
               masterPlaylist, new LineIterator(extraLines, reader), uri.toString());
@@ -292,7 +292,7 @@ public final class HlsPlaylistParser implements ParsingLoadable.Parser<HlsPlayli
         variableDefinitions.put(
             /* key= */ parseStringAttr(line, REGEX_NAME, variableDefinitions),
             /* value= */ parseStringAttr(line, REGEX_VALUE, variableDefinitions));
-      } else if (line.equals(TAG_INDEPENDENT_SEGMENTS)) {
+      } else if (TAG_INDEPENDENT_SEGMENTS.equals(line)) {
         hasIndependentSegmentsTag = true;
       } else if (line.startsWith(TAG_MEDIA)) {
         // Media tags are parsed at the end to include codec information from #EXT-X-STREAM-INF
@@ -617,7 +617,7 @@ public final class HlsPlaylistParser implements ParsingLoadable.Parser<HlsPlayli
         } else if ("EVENT".equals(playlistTypeString)) {
           playlistType = HlsMediaPlaylist.PLAYLIST_TYPE_EVENT;
         }
-      } else if (line.equals(TAG_IFRAME)) {
+      } else if (TAG_IFRAME.equals(line)) {
         isIFrameOnly = true;
       } else if (line.startsWith(TAG_START)) {
         startOffsetUs = (long) (parseDoubleAttr(line, REGEX_TIME_OFFSET) * C.MICROS_PER_SECOND);
@@ -711,7 +711,7 @@ public final class HlsPlaylistParser implements ParsingLoadable.Parser<HlsPlayli
       } else if (line.startsWith(TAG_DISCONTINUITY_SEQUENCE)) {
         hasDiscontinuitySequence = true;
         playlistDiscontinuitySequence = Integer.parseInt(line.substring(line.indexOf(':') + 1));
-      } else if (line.equals(TAG_DISCONTINUITY)) {
+      } else if (TAG_DISCONTINUITY.equals(line)) {
         relativeDiscontinuitySequence++;
       } else if (line.startsWith(TAG_PROGRAM_DATE_TIME)) {
         if (playlistStartTimeUs == 0) {
@@ -719,11 +719,11 @@ public final class HlsPlaylistParser implements ParsingLoadable.Parser<HlsPlayli
               C.msToUs(Util.parseXsDateTime(line.substring(line.indexOf(':') + 1)));
           playlistStartTimeUs = programDatetimeUs - segmentStartTimeUs;
         }
-      } else if (line.equals(TAG_GAP)) {
+      } else if (TAG_GAP.equals(line)) {
         hasGapTag = true;
-      } else if (line.equals(TAG_INDEPENDENT_SEGMENTS)) {
+      } else if (TAG_INDEPENDENT_SEGMENTS.equals(line)) {
         hasIndependentSegmentsTag = true;
-      } else if (line.equals(TAG_ENDLIST)) {
+      } else if (TAG_ENDLIST.equals(line)) {
         hasEndTag = true;
       } else if (!line.startsWith("#")) {
         String segmentEncryptionIV;

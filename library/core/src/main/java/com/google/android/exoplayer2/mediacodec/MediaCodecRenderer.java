@@ -2249,7 +2249,7 @@ public abstract class MediaCodecRenderer extends BaseRenderer {
       return true;
     }
     StackTraceElement[] stackTrace = error.getStackTrace();
-    return stackTrace.length > 0 && stackTrace[0].getClassName().equals("android.media.MediaCodec");
+    return stackTrace.length > 0 && "android.media.MediaCodec".equals(stackTrace[0].getClassName());
   }
 
   @RequiresApi(21)

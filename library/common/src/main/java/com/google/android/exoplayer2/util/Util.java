@@ -1218,7 +1218,7 @@ public final class Util {
     if (matcher.group(9) == null) {
       // No time zone specified.
       timezoneShift = 0;
-    } else if (matcher.group(9).equalsIgnoreCase("Z")) {
+    } else if ("Z".equalsIgnoreCase(matcher.group(9))) {
       timezoneShift = 0;
     } else {
       timezoneShift = ((Integer.parseInt(matcher.group(12)) * 60

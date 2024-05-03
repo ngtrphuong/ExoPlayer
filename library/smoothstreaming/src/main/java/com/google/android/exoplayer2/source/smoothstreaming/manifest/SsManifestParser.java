@@ -746,25 +746,25 @@ public class SsManifestParser implements ParsingLoadable.Parser<SsManifest> {
 
     @Nullable
     private static String fourCCToMimeType(String fourCC) {
-      if (fourCC.equalsIgnoreCase("H264") || fourCC.equalsIgnoreCase("X264")
-          || fourCC.equalsIgnoreCase("AVC1") || fourCC.equalsIgnoreCase("DAVC")) {
+      if ("H264".equalsIgnoreCase(fourCC) || "X264".equalsIgnoreCase(fourCC)
+          || "AVC1".equalsIgnoreCase(fourCC) || "DAVC".equalsIgnoreCase(fourCC)) {
         return MimeTypes.VIDEO_H264;
-      } else if (fourCC.equalsIgnoreCase("AAC") || fourCC.equalsIgnoreCase("AACL")
-          || fourCC.equalsIgnoreCase("AACH") || fourCC.equalsIgnoreCase("AACP")) {
+      } else if ("AAC".equalsIgnoreCase(fourCC) || "AACL".equalsIgnoreCase(fourCC)
+          || "AACH".equalsIgnoreCase(fourCC) || "AACP".equalsIgnoreCase(fourCC)) {
         return MimeTypes.AUDIO_AAC;
-      } else if (fourCC.equalsIgnoreCase("TTML") || fourCC.equalsIgnoreCase("DFXP")) {
+      } else if ("TTML".equalsIgnoreCase(fourCC) || "DFXP".equalsIgnoreCase(fourCC)) {
         return MimeTypes.APPLICATION_TTML;
-      } else if (fourCC.equalsIgnoreCase("ac-3") || fourCC.equalsIgnoreCase("dac3")) {
+      } else if ("ac-3".equalsIgnoreCase(fourCC) || "dac3".equalsIgnoreCase(fourCC)) {
         return MimeTypes.AUDIO_AC3;
-      } else if (fourCC.equalsIgnoreCase("ec-3") || fourCC.equalsIgnoreCase("dec3")) {
+      } else if ("ec-3".equalsIgnoreCase(fourCC) || "dec3".equalsIgnoreCase(fourCC)) {
         return MimeTypes.AUDIO_E_AC3;
-      } else if (fourCC.equalsIgnoreCase("dtsc")) {
+      } else if ("dtsc".equalsIgnoreCase(fourCC)) {
         return MimeTypes.AUDIO_DTS;
-      } else if (fourCC.equalsIgnoreCase("dtsh") || fourCC.equalsIgnoreCase("dtsl")) {
+      } else if ("dtsh".equalsIgnoreCase(fourCC) || "dtsl".equalsIgnoreCase(fourCC)) {
         return MimeTypes.AUDIO_DTS_HD;
-      } else if (fourCC.equalsIgnoreCase("dtse")) {
+      } else if ("dtse".equalsIgnoreCase(fourCC)) {
         return MimeTypes.AUDIO_DTS_EXPRESS;
-      } else if (fourCC.equalsIgnoreCase("opus")) {
+      } else if ("opus".equalsIgnoreCase(fourCC)) {
         return MimeTypes.AUDIO_OPUS;
       }
       return null;

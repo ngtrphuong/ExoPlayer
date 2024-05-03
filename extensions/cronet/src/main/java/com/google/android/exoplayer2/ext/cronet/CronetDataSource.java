@@ -825,8 +825,8 @@ public class CronetDataSource extends BaseDataSource implements HttpDataSource {
 
   private static boolean isCompressed(UrlResponseInfo info) {
     for (Map.Entry<String, String> entry : info.getAllHeadersAsList()) {
-      if (entry.getKey().equalsIgnoreCase("Content-Encoding")) {
-        return !entry.getValue().equalsIgnoreCase("identity");
+      if ("Content-Encoding".equalsIgnoreCase(entry.getKey())) {
+        return !"identity".equalsIgnoreCase(entry.getValue());
       }
     }
     return false;

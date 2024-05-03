@@ -90,7 +90,7 @@ public final class IcyHeaders implements Metadata.Entry {
     }
     headers = responseHeaders.get(RESPONSE_HEADER_PUB);
     if (headers != null) {
-      isPublic = headers.get(0).equals("1");
+      isPublic = "1".equals(headers.get(0));
       icyHeadersPresent = true;
     }
     headers = responseHeaders.get(RESPONSE_HEADER_METADATA_INTERVAL);
