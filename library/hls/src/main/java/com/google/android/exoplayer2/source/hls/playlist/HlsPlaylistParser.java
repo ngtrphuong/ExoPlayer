@@ -38,6 +38,7 @@ import com.google.android.exoplayer2.util.Log;
 import com.google.android.exoplayer2.util.MimeTypes;
 import com.google.android.exoplayer2.util.UriUtil;
 import com.google.android.exoplayer2.util.Util;
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -204,7 +205,7 @@ public final class HlsPlaylistParser implements ParsingLoadable.Parser<HlsPlayli
         throw new UnrecognizedInputFormatException("Input does not start with the #EXTM3U header.",
             uri);
       }
-      while ((line = reader.readLine()) != null) {
+      while ((line = BoundedLineReader.readLine(reader, 5_000_000)) != null) {
         line = line.trim();
         if (line.isEmpty()) {
           // Do nothing.
@@ -980,7 +981,7 @@ public final class HlsPlaylistParser implements ParsingLoadable.Parser<HlsPlayli
         next = Assertions.checkNotNull(extraLines.poll());
         return true;
       }
-      while ((next = reader.readLine()) != null) {
+      while ((next = BoundedLineReader.readLine(reader, 5_000_000)) != null) {
         next = next.trim();
         if (!next.isEmpty()) {
           return true;

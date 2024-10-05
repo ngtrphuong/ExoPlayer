@@ -16,6 +16,7 @@
 package com.google.android.exoplayer2.source.dash;
 
 import static com.google.android.exoplayer2.util.Assertions.checkNotNull;
+import io.github.pixee.security.BoundedLineReader;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
@@ -1446,7 +1447,7 @@ public final class DashMediaSource extends BaseMediaSource {
 
     @Override
     public Long parse(Uri uri, InputStream inputStream) throws IOException {
-      String firstLine = new BufferedReader(new InputStreamReader(inputStream)).readLine();
+      String firstLine = BoundedLineReader.readLine(new BufferedReader(new InputStreamReader(inputStream)), 5_000_000);
       return Util.parseXsDateTime(firstLine);
     }
 
@@ -1460,7 +1461,7 @@ public final class DashMediaSource extends BaseMediaSource {
     @Override
     public Long parse(Uri uri, InputStream inputStream) throws IOException {
       String firstLine =
-          new BufferedReader(new InputStreamReader(inputStream, Charsets.UTF_8)).readLine();
+          BoundedLineReader.readLine(new BufferedReader(new InputStreamReader(inputStream, Charsets.UTF_8)), 5_000_000);
       try {
         Matcher matcher = TIMESTAMP_WITH_TIMEZONE_PATTERN.matcher(firstLine);
         if (!matcher.matches()) {
