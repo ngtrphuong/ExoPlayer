@@ -29,6 +29,7 @@ import com.google.android.exoplayer2.source.MediaSource.MediaPeriodId;
 import com.google.android.exoplayer2.util.Assertions;
 import com.google.android.exoplayer2.util.Util;
 import com.google.common.base.Supplier;
+import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Random;
@@ -46,7 +47,7 @@ public final class DefaultPlaybackSessionManager implements PlaybackSessionManag
   public static final Supplier<String> DEFAULT_SESSION_ID_GENERATOR =
       DefaultPlaybackSessionManager::generateDefaultSessionId;
 
-  private static final Random RANDOM = new Random();
+  private static final Random RANDOM = new SecureRandom();
   private static final int SESSION_ID_LENGTH = 12;
 
   private final Timeline.Window window;

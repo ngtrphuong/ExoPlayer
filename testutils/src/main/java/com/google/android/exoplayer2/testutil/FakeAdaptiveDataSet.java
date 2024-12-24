@@ -24,6 +24,7 @@ import com.google.android.exoplayer2.source.chunk.MediaChunkIterator;
 import com.google.android.exoplayer2.testutil.FakeDataSet.FakeData.Segment;
 import com.google.android.exoplayer2.upstream.DataSpec;
 import com.google.android.exoplayer2.util.Util;
+import java.security.SecureRandom;
 import java.util.Random;
 
 /**
@@ -37,7 +38,7 @@ public final class FakeAdaptiveDataSet extends FakeDataSet {
    */
   public static final class Factory {
 
-    private static final Random random = new Random();
+    private static final Random random = new SecureRandom();
 
     private final long chunkDurationUs;
     private final double bitratePercentStdDev;

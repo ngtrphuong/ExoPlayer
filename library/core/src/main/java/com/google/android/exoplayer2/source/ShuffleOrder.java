@@ -16,6 +16,7 @@
 package com.google.android.exoplayer2.source;
 
 import com.google.android.exoplayer2.C;
+import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -41,7 +42,7 @@ public interface ShuffleOrder {
      * @param length The length of the shuffle order.
      */
     public DefaultShuffleOrder(int length) {
-      this(length, new Random());
+      this(length, new SecureRandom());
     }
 
     /**
